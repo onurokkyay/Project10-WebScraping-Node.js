@@ -1,0 +1,46 @@
+<script>
+    function generateInputs(form,input){
+        x = input.value;
+  for (y = 0; y<x; y++) {
+    var element = document.createElement('input');
+    element.type = "text";
+    element.name="input"+y;
+    element.placeholder = "Url giriniz";
+    form.appendChild(element);
+  }
+           
+    }
+</script>
+
+<div class="panel panel-info"></div>
+<div class="panel-heading">
+    <div class="panel-title">
+        <form action="/MultipleURL" method="POST">
+        <h2>
+            <label for="fname">Ana URL i Giriniz:</label>
+                    <input type="text" id="mainurl" name="mainurl">
+
+                   <br>
+                    <label for="fname">Ana URL:</label>
+                    <%= mainurl%>
+        </h2>
+
+            <div id="input-form">
+                <h3>Kaç adet url gireceksiniz:</h3>
+                <input type="number" placeholder="Kaç adet url gireceksiniz ?" onchange="generateInputs(document.getElementById('input-form'), this)" required><br>
+              </div>
+ 
+        <input type="submit" value="Gönder">
+    </form>
+<ul>
+<% for(var i=0;i<urlarray.length;i++){%>
+    <li>URL:<%= urlarray[i]%></li>
+<%}
+%>
+
+</ul>
+
+    </div>
+</div>
+<div class="panel-body"></div>
+<div class="panel-footer"></div>

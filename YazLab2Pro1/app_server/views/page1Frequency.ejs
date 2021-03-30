@@ -1,0 +1,32 @@
+<div class="panel panel-info"></div>
+<div class="panel-heading">
+    <div class="panel-title">
+        <form action="/Frequency" method="POST">
+        <h2>
+            <label for="fname">Ana URL i Giriniz:</label>
+                    <input type="text" id="mainurl" name="mainurl">
+
+                   <br>
+                    <label for="fname">Ana URL:</label>
+                    <%= mainurl%>
+        </h2>
+        <input type="submit" value="Gönder">
+    </form>
+<ul>
+
+<% for(var i=0;i<wordfrequency.length;i++)
+if(wordfrequency[i][0]!=""){
+    {%>
+        <li>Kelime:  <%= wordfrequency[i][0]%>  Frekansı: <%= wordfrequency[i][1]%></li>
+    <%}
+}
+
+%>
+
+</ul>
+
+
+    </div>
+</div>
+<div class="panel-body"></div>
+<div class="panel-footer"></div>

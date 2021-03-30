@@ -1,0 +1,152 @@
+<script>
+    function generateInputs(form,input){
+        x = input.value;
+  for (y = 0; y<x; y++) {
+    var element = document.createElement('input');
+    element.type = "text";
+    element.name="input"+y;
+    element.placeholder = "Url giriniz";
+    form.appendChild(element);
+  }
+           
+    }
+</script>
+
+<div class="panel panel-info"></div>
+<div class="panel-heading">
+    <div class="panel-title">
+        <form action="/MultipleURL" method="POST">
+        <h2>
+            <label for="fname">Ana URL i Giriniz:</label>
+                    <input type="text" id="mainurl" name="mainurl">
+
+                   <br>
+                    <label for="fname">Ana URL:</label>
+                    <%= mainurl%>
+        </h2>
+
+            <div id="input-form">
+                <h3>Kaç adet url gireceksiniz:</h3>
+                <input type="number" placeholder="Kaç adet url gireceksiniz ?" onchange="generateInputs(document.getElementById('input-form'), this)" required><br>
+              </div>
+ 
+        <input type="submit" value="Gönder">
+    </form>
+<ul>
+
+     
+    <h2>1.Sitenin Anahtar Kelimeleri</h2>
+    <% for(var i=0;i<Keywords1.length;i++)
+    if(Keywords1[i][0]!=""){
+        {%>
+            <li>Kelime:  <%= Keywords1[i][0]%>  Frekansı: <%= Keywords1[i][1]%></li>
+        <%}
+    }
+    
+    %>
+
+
+<% 
+    function printMainSite(Site){
+        {%>
+            <div style="background-color:rgb(104, 49, 175)">
+            <ul>
+                <li><h2>Main URL:<%= Site.url%></h2></li>
+                <li>Score:<%= Site.Score%></li> 
+                <li>Rank:<%= Site.rank%></li> 
+                <% for(var j=0;j<Site.Keywords2.length;j++)
+        if(Site.Keywords2[j][0]!=""){
+            {%>
+                <li>Kelime:  <%= Site.Keywords2[j][0]%>  Frekansı: <%= Site.Keywords2[j][1]%></li>
+            <%}
+        }
+        
+        %>     
+        <% for(var j=0;j<Site.SubLink.length;j++)
+
+            {%>
+                <li>SubLink:  <%= Site.SubLink[j]%></li>
+            <%}
+        
+        
+        %>     
+            </ul>
+        </div>
+        <%}
+    }
+    function printSubSite(Site){
+        {%>
+            <div style="margin-left:200px ; background-color:rgb(0, 140, 255)">
+            <ul>
+                <li><h2>Sub URL:<%= Site.url%></h2></li>
+                <li>Score:<%= Site.Score%></li> 
+                <li>Rank:<%= Site.rank%></li> 
+                <% for(var j=0;j<Site.Keywords2.length;j++)
+        if(Site.Keywords2[j][0]!=""){
+            {%>
+                <li>Kelime:  <%= Site.Keywords2[j][0]%>  Frekansı: <%= Site.Keywords2[j][1]%></li>
+            <%}
+        }
+        
+        %>     
+        <% for(var j=0;j<Site.SubLink.length;j++)
+
+            {%>
+                <li>SubLink:  <%= Site.SubLink[j]%></li>
+            <%}
+        
+        
+        %>     
+            </ul>
+            </div>
+        <%}
+    }
+    function printSubSiteSub(Site){
+        {%>
+            <div style="margin-left:500px ; background-color:rgb(0, 68, 255)">
+            <ul>
+                <li><h2>Sub Sub URL:<%= Site.url%></h2></li>
+                <li>Score:<%= Site.Score%></li> 
+                <li>Rank:<%= Site.rank%></li> 
+                <% for(var j=0;j<Site.Keywords2.length;j++)
+        if(Site.Keywords2[j][0]!=""){
+            {%>
+                <li>Kelime:  <%= Site.Keywords2[j][0]%>  Frekansı: <%= Site.Keywords2[j][1]%></li>
+            <%}
+        }
+        
+        %>     
+        <% for(var j=0;j<Site.SubLink.length;j++)
+
+            {%>
+                <li>SubLink:  <%= Site.SubLink[j]%></li>
+            <%}
+        
+        
+        %>     
+            </ul>
+        </div>
+        <%}
+    }
+    for(let i=0;i<AllSites.length;i++){
+        printMainSite(AllSites[i]);
+      
+        for(let j=0;j<AllSites[i].subSite.length;j++){
+           
+            printSubSite(AllSites[i].subSite[j]);
+            for(let k=0;k<AllSites[i].subSite[j].subSite.length;k++){
+               
+                printSubSiteSub(AllSites[i].subSite[j].subSite[k]);
+                
+            }
+        }
+
+    }
+%>
+
+</ul>
+
+    </div>
+</div>
+<div class="panel-body"></div>
+<div class="panel-footer"></div>

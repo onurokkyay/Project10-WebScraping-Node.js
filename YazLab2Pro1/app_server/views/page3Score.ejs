@@ -1,0 +1,52 @@
+<div class="panel panel-info"></div>
+<div class="panel-heading">
+    <div class="panel-title">
+        <form action="/Score" method="POST">
+        <h2>
+            <label for="fname">Ana URL i Giriniz:</label>
+                    <input type="text" id="mainurl" name="mainurl">
+
+                    <label for="fname">2.Sitenin URL i Giriniz:</label>
+                    <input type="text" id="secondurl" name="secondurl">
+                   <br>
+                    <label for="fname">Ana URL:</label>
+                    <%= mainurl%>
+                    <br>
+                    <label for="fname">2. URL:</label>
+                    <%= secondurl%>
+                    <br>
+                    <label for="fname">Benzerlik Skoru:</label>
+                    <%= LastScore%>
+        </h2>
+        <input type="submit" value="Gönder">
+    </form>
+<ul>
+    <h2>1.Sitenin Anahtar Kelimeleri</h2>
+<% for(var i=0;i<Keywords1.length;i++)
+if(Keywords1[i][0]!=""){
+    {%>
+        <li>Kelime:  <%= Keywords1[i][0]%>  Frekansı: <%= Keywords1[i][1]%></li>
+    <%}
+}
+
+%>
+
+
+<h2>2.Sitenin Anahtar Kelimeleri</h2>
+
+<% for(var i=0;i<Keywords2.length;i++)
+if(Keywords2[i][0]!=""){
+    {%>
+        <li>Kelime:  <%= Keywords2[i][0]%>  Frekansı: <%= Keywords2[i][1]%></li>
+    <%}
+}
+
+%>
+
+</ul>
+
+
+    </div>
+</div>
+<div class="panel-body"></div>
+<div class="panel-footer"></div>
